@@ -23,42 +23,48 @@ import javax.swing.JPanel;
 
 public class DrumKit implements MouseListener {
 
-	JLabel drumLabelWithImage;
-
+	JLabel drumLabel;
+	JLabel cymbalLabel;
 	public void run() throws MalformedURLException {
 
 		// 1. Make a JFrame variable and initialize it using "new JFrame()"
-
+JFrame frame = new JFrame();
 		// 2. Make the frame visible and
 		// set its default close operation to JFrame.EXIT_ON_CLOSE
-
+frame.setVisible(true);
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// 3. Set the size of the frame
-
+frame.setSize(1000, 500);
 		// 4. Set the title of the frame
-
+frame.setTitle("drum kit");
 		// 5. Make a JPanel variable and initialize it using "new JPanel().
-
+JPanel panel = new JPanel();
 		// 6. Add the panel to the frame. (The panel is invisible.)
-
+frame.add(panel);
 		// 7. Download an image of a drum from the Internet. Drop it into your
 		// Eclipse project under "recipe package(drum_kit)".
 
 		// 8. Put the name of your image file in a String variable.
-
+String drum = "snare.jpg";
 		// 9. Edit the next line to use your String variable
-		// drumLabelWithImage = createLabelImage(drumImageString);
+drumLabel = createLabelImage(drum);
 
 		// 10. Add the image to the panel
-
+panel.add(drumLabel);
 		// 11. Set the layout of the panel to "new GridLayout()"
-
+panel.setLayout(new GridLayout());
 		// 12. call the pack() method on the frame. Run your program. Do you see
 		// your drum image?
-
+frame.pack();
 		// 13. add this mouse listener to drumLabelWithImage
-
+drumLabel.addMouseListener(this);
 		// 18. Add more images to make a drumkit. Remember to add this mouse
 		// listener to each one.
+String cymbal = "cymbal.jpg";
+cymbalLabel = createLabelImage(cymbal);
+panel.add(cymbalLabel);
+frame.pack();
+cymbalLabel.addMouseListener(this);
 
 	}
 
@@ -75,7 +81,12 @@ public class DrumKit implements MouseListener {
 		// leagueofamazing/code4life.
 
 		// 16. If they clicked on the drumImage...
-
+if (drumClicked==drumLabel) {
+	playSound("drum.wav");
+}
+else {
+	playSound("cymbal.wav");
+}
 		// 17. ...use the playSound method to play a drum sound. Test to see if
 		// it works
 
